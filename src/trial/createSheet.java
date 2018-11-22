@@ -13,11 +13,11 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class createSheet {
 	HSSFWorkbook workbook = new HSSFWorkbook();
-	HSSFSheet sheet = workbook.createSheet("Wow");
+	HSSFSheet sheet = workbook.createSheet("myDatabase");
 	HSSFRow rowName;
 	HSSFCell cellName;
 	private String sheetName;
-	private int rowNum;
+	private int rowNum=1;
 	private int cellNum; 
 	public createSheet(String sheetName) {
 		this.setSheetName(sheetName);
@@ -47,15 +47,17 @@ public class createSheet {
 //		this.rowName = sheet.createRow(rowNum);
 		this.cellName = rowName.createCell(cellNum);
 		this.cellName.setCellValue(cellValue);
-		cellNum +=1;
 		this.setCellNum(cellNum);
-		workbook.write(new FileOutputStream("vataBase.csv"));
+		System.out.println("Cells: "+this.getCellNum());
+		workbook.write(new FileOutputStream("xyz.csv"));
 		workbook.close();
-		
 	}
-	public void createRow(int rowNum) {
-		this.rowName = sheet.createRow(rowNum);
-		this.setRowNum(rowNum);
+	
+	public void createRow(int theRownumber) {
+		this.rowName = sheet.createRow(theRownumber);
+		this.rowNum = theRownumber;
+		this.rowNum++;
+//		System.out.println(this.getRowNum());
 		
 	}
 	
@@ -66,29 +68,31 @@ public class createSheet {
 	public void getCell(HSSFCell cellName) {
 		this.cellName = cellName;
 	}
+	
 	public HSSFCell getCell() {
 		return cellName;
 	}
+	
 	public void setRowName(HSSFRow rowName) {
 		this.rowName = rowName;
 	}
+	
 	public HSSFRow getRow() {
 		return rowName;
 	}
 	
-
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		
-		createSheet mySheet = new createSheet("creditentials");
-		for (int i=0; i<10; i++) {
-			mySheet.createRow(i);
-			for(int b = 0; b<10; b++) {
-				
-				mySheet.createCell( b, "lo");
-			}	
-		}
-		
+//		createSheet mySheet = new createSheet("creditentials");
+//		for (int i=0; i<10; i++) {
+//			mySheet.createRow(1);
+//			for(int b = 0; b<10; b++) {
+//				
+//				mySheet.createCell( 1, "lo");
+//			}	
+//		}
+//		
 		
 		// Mine		
 		String fileName="xyz.csv";
